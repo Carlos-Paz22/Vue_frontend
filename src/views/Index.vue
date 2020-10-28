@@ -44,6 +44,7 @@
                 class="mr-sm-2"
                  v-model="buscar"
                 placeholder="Search"
+                required="search"
               ></b-form-input>
               <b-button size="sm" class="my-2 my-sm-0" type="submit"
                 >Search</b-button
@@ -124,11 +125,25 @@
         <b-icon icon="download"></b-icon> Descargar
     
       </b-button>
-    <div v-if="Search === ''">
-                <div class="alert alert-danger" role="alert">
-                    No a seleccionado ningun archivo
-                </div>
-            </div>
+   <div v-if="alerta === true">
+          <div class="mt-2">
+            <b-alert
+              :show="dismissCountDown"
+              dismissible
+              variant="danger"
+              @dismissed="dismissCountDown = 0"
+              @dismiss-count-down="countDownChanged"
+            >
+              <p><strong>Error</strong> Seleccione una o mas categorias</p>
+              <b-progress
+                variant="danger"
+                :max="dismissSecs"
+                :value="dismissCountDown"
+                height="4px"
+              ></b-progress>
+            </b-alert>
+          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -155,6 +170,7 @@ export default {
       checkedNames: "",
       buscar: "",
       url:"",
+       alerta: false,
     };
   },
   mounted() {
