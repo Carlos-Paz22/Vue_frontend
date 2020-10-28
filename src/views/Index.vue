@@ -5,9 +5,22 @@
       v-model="buscar"
       aria-label="Amount (to the nearest dollar)"
     /> -->
-    <div class="input-group-prepend">
+   
+
+    <div class="container-flex">
+      <b-navbar toggleable="md" type="dark" class="Nav">
+        <b-navbar-brand href="/">Inicio</b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item href="/login">Login</b-nav-item>
+            <b-nav-item href="/registro">Registro</b-nav-item>
+            <b-nav-item href="/home">Mi Perfil</b-nav-item>
+             <div class="input-group-prepend">
       <select
-        class="input-group-text bg-transparent text-white custom-select rounded-right"
+        class="input-group-text bg-transparent text-black rounded-right"
         v-model="checkedNames"
       >
         <option
@@ -21,19 +34,6 @@
         <option class="text-dark" value="" selected>Todas</option>
       </select>
     </div>
-
-    <div class="container-flex">
-      <b-navbar toggleable="md" type="dark" class="Nav">
-        <b-navbar-brand href="/">Inicio</b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item href="/login">Login</b-nav-item>
-            <b-nav-item href="/registro">Registro</b-nav-item>
-            <b-nav-item href="/home">Mi Perfil</b-nav-item>
-            <b-nav-item href="#">Categorias</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -119,6 +119,16 @@
           :key="items.id"
         >
           <Galeria :items="items" />
+           <b-button class="tamaño" @click="bajarImagen(items.imagen.url) " variant="outline-success">
+
+        <b-icon icon="download"></b-icon> Descargar
+    
+      </b-button>
+    <div v-if="Search === ''">
+                <div class="alert alert-danger" role="alert">
+                    No a seleccionado ningun archivo
+                </div>
+            </div>
         </div>
       </div>
     </div>
@@ -144,6 +154,7 @@ export default {
       tags: [],
       checkedNames: "",
       buscar: "",
+      url:"",
     };
   },
   mounted() {
@@ -195,6 +206,42 @@ export default {
           console.log(response);
         });
     },
+    bajarImagen(imagenUrl) {
+      this.url = "http://localhost:1337" + imagenUrl;
+      axios({
+        method: "get",
+        url: this.url,
+        responseType: "arraybuffer",
+      })
+        .then((response) => {
+          this.forceFileDownload(response);
+        })
+        .catch(() => console.log("Fallo"));
+    },
+    
+    forceFileDownload(response){
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'imagen.png') //or any other extension
+      document.body.appendChild(link)
+      link.click()
+      },
+    
+    downloadWithAxios(){
+
+      axios({
+        method: 'get',
+         url:   'http://localhost:1337'+tag.imagen.url,
+        responseType: 'arraybuffer'
+      })
+      .then(response => {
+        
+        this.forceFileDownload(response)
+        
+      })
+      .catch(() => console.log('Fallo al descargar'))
+    }
   },
 };
 </script>
@@ -255,5 +302,9 @@ h1 {
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+.tamaño{
+  margin-left: 90px;
 }
 </style>

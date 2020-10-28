@@ -1,54 +1,36 @@
 <template>
-  <div>
-  
+<div  class="fondo" style="max-height: 200%;">
+ 
+    <div class="container-fluid mt-4 ">
+      
+      <div class="row  ">
+        <div id="tamaño-regis" class="container-fluid ">
+           <div class="text-center">
+          <a href="/" >
+            <img class="resitro" src="./assets/login.png" />
+          </a>
+        
+        </div>
+          <h1>Registro</h1>
 
-    <div class="registroprincipal flex-container mt-4">
-      <div class="row mx-4">
-        <div id="tamaño-regis" class="container-fluid">
-            <h1>Registro</h1>
           <form @submit.prevent="register">
             <label for="username">Usuario</label>
             <strong style="color: red"> * </strong>
             <br />
-            <input
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-              type="text"
-              size="50"
-              v-model="username"
-              required
-            />
+            <input  class="col-xs-12 col-sm-12 col-md-12 col-lg-12"   type="text"     size="50"    v-model="username"     required      />
             <br />
-
             <label for="nombre">Nombre </label>
             <strong style="color: red"> * </strong>
             <br />
-            <input
-              type="text"
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-              size="90"
-              v-model="nombre"
-              required
-            /><br />
+           <input    type="text"    class="col-xs-12 col-sm-12 col-md-12 col-lg-12"       size="90"    v-model="nombre"    required  /> <br />
             <label for="email">Email </label>
             <strong style="color: red"> * </strong>
             <br />
-            <input
-              type="email"
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-              size="90"
-              v-model="email"
-              required
-            /><br />
-            <label for="password">Password </label>
+            <input   type="email"    class="col-xs-12 col-sm-12 col-md-12 col-lg-12"    size="90"       v-model="email"      required      /><br />
+           <label for="password">Password </label>
             <strong style="color: red"> * </strong>
             <br />
-            <input
-              type="password"
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-              size="50"
-              v-model="password"
-              required
-            /><br />
+            <input   type="password"      class="col-xs-12 col-sm-12 col-md-12 col-lg-12"   size="50"     v-model="password"       required     /><br />
 
             <div v-if="error">
               <div class="mt-2">
@@ -91,7 +73,7 @@
             </div>
             <br />
 
-            <b-button  type="submit"  @click="showAlert"   id="color"    block     variant="dark" onsubmit="setTimeout(function () { window.location.reload(); }, 10)"      >
+            <b-button     type="submit"    @click="showAlert"     id="color" block          variant="dark"    onsubmit="setTimeout(function () { window.location.reload(); }, 10)"  >
               Ingresar
             </b-button>
           </form>
@@ -99,7 +81,9 @@
         </div>
       </div>
     </div>
-  </div>
+ 
+</div>
+  
 </template>
 
 <script>
@@ -160,11 +144,8 @@ export default {
 };
 </script>
 <style >
-
-.registroprincipal{
-    background-image: url('https://images8.alphacoders.com/718/718915.jpg');
-
-  background-size: cover;
+.registroprincipal {
+  background: aqua;
 }
 #col_border {
   text-decoration: none;
@@ -189,12 +170,32 @@ export default {
   margin-bottom: 50px;
 }
 
-#tamaño-regis{
+#tamaño-regis {
   margin-top: 100px;
-   width: 500px;
+  width: 500px;
   max-height: 1000px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   background-color: rgb(255, 251, 251);
+}
+.resitro{
+  margin-top: 50px;
+  margin-bottom: 50px;
+   width: 64px;
+  height: 64px;
+
+}
+ .fondo {
+  
+  
+ 
+  
+  
+   background-image: url('https://images8.alphacoders.com/718/718915.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 </style>

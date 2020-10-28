@@ -14,9 +14,9 @@
       
       <div class="details">
       
-    <!--  <h5 class="card-title">{{ items.user.username}}</h5> -->
+   <h5 class="card-title">{{ items.user.username}}</h5>
         
-      <button @click="onClick()">Download</button>
+ 
       
       </div>
     </div>
