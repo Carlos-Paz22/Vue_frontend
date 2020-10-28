@@ -1,5 +1,5 @@
 <template>
-<div  class="fondo" style="max-height: 200%;">
+<div style="max-height: 200%;">
  
     <div class="container-fluid mt-4 ">
       
@@ -185,7 +185,7 @@ export default {
   height: 64px;
 
 }
- .fondo {
+/*  .fondo {
   
   
  
@@ -197,5 +197,5 @@ export default {
   -o-background-size: cover;
   background-size: cover;
 
-}
+} */
 </style>

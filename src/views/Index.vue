@@ -70,7 +70,7 @@
       >
         <!-- Text slides with image -->
         <b-carousel-slide
-          caption="First slide"
+         
           text="Nulla vitae elit libero, a pharetra augue mollis interdum."
           img-src="https://picsum.photos/1024/480/?image=52"
           style="max-height: 400px"
@@ -196,7 +196,7 @@ export default {
 
     traerimagen() {
       axios
-        .get("http://localhost:1337/imagenes/", {
+        .get("http://localhost:1337/imagenes?_sort=id%3ADESC", {
           headers: {
             "Content-Type": "application/json",
           },
